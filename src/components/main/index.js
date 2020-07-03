@@ -5,7 +5,7 @@ const MainDiv = styled.div`
 margin:0;
 padding:0;
 float:left;
-width:85.5vw;
+width:82vw;
 height:100vh;
 background-color: #343434
 `
