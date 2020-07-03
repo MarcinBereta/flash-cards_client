@@ -5,7 +5,8 @@ const Vertical_bar = styled.ul`
 position:center;
 justify-content:center;
 height:100vh;
-width:20vw;
+width:12vw;
+float:left;
 border:0.2 solid black;
 background-color:#FFD600;
 margin:0;
@@ -15,11 +16,10 @@ display:block
 
 const NavBar = () => (
     <Vertical_bar>
-      lorem ipsum dolor sit amet
       <Square />
-      <Square second />
+      <Square which='second' />
       <Square />
-      <Square last />
+      <Square which='last' />
     </Vertical_bar>
 )
 

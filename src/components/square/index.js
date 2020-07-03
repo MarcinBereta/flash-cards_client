@@ -3,17 +3,21 @@ import styled from 'styled-components';
 
 const Base = styled.div`
 /* margin-top:30vh; */
-width: 80px;
+min-width:4vw;
+max-width:6vw;
+padding:0;
+width:auto;
 height: 80px;
-background: #FFFFFF;
+background-color:${props => props.last ? 'black' : 'white'};
 border-radius: 20px;
-margin-top: ${props => props.second ? '' : '20px'};
+margin-top: ${props => props.last ? '20px' : '60px'};
+margin-left:3vw;
 /* margin-bottom: ${props => props.last ? '-20px' : '10px'}; */
-margin-left:7vw
 `
 
-const Square = ({props}) => (
-    <Base props/>
+const Square = ({which}) => (
+    console.log(which),
+    <Base which/>
 ) 
 
 export default Square
