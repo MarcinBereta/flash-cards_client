@@ -5,6 +5,7 @@ import LearnView from '../views/learn_page/index'
 import OptionView from '../views/option_page/index'
 import HomeView from '../views/home_page/index'
 import ProfileView from '../views/profile_page/index'
+import "./App.css"
 
 const App = () => {
     return (

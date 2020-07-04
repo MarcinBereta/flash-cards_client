@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import Square from '../../components/square/index'
 import { NavLink } from 'react-router-dom'
 import { Home } from '@styled-icons/fa-solid/Home'
+import { Person } from '@styled-icons/ionicons-solid/Person'
+import { Settings } from '@styled-icons/ionicons-sharp/Settings'
+import { Code } from '@styled-icons/heroicons-outline/Code'
 
 const Vertical_bar = styled.ul`
 position:center;
@@ -18,29 +21,53 @@ display:block
 `;
 
 const HomeIcon = styled(Home)`
-  z-index:3;
-  position:absolute;
-  width:68px;
-  height:68px;
-  color: red;
+height:100%;
+color:#343434;
+width:100%;
+`
+const PersonIcon = styled(Person)`
+height:100%;
+color:#343434;
+width:100%;
+`
+const SettingsIcon = styled(Settings)`
+height:100%;
+color:#343434;
+width:100%;
+`
+const CodeIcon = styled(Code)`
+height:100%;
+color:#343434;
+width:100%
 `
 
 const NavBar = () => (
     <Vertical_bar>
       <nav>
         <NavLink to='/learn'>
-          <Square />
+          <Square >
+            <CodeIcon />
+          </Square>
         </NavLink>
+
         <NavLink to='/option'>
-          <Square />
+          <Square>
+            <SettingsIcon />
+          </Square>
         </NavLink>
-        <HomeIcon />
+
         <NavLink to='profile'>
-          <Square />
+          <Square >
+            <PersonIcon />
+          </Square>
         </NavLink>
+
         <NavLink to='/home'>
-          <Square last />
+          <Square last>
+            <HomeIcon />
+          </Square>
         </NavLink>
+
       </nav>
     </Vertical_bar>
 )

@@ -13,13 +13,16 @@ border-radius: 20px;
 margin-top: ${props => props.last ? '30vh' : '5vh'};
 margin-left:2.5vw;
 &:hover{
-    background-color:grey
+    background-color:grey;
+    border: 1px solid red
 }
 /* margin-bottom: ${props => props.last ? '-20px' : '10px'}; */
 `
 
-const Square = ({last}) => (
-    <Base last={last} />
+const Square = ({last, children}) => (
+    <Base last={last}>
+        {children}
+    </Base>
 ) 
 
 export default Square
