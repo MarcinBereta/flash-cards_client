@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const registerView = () =>{
+const RegisterView = () =>{
 
     const[state, setState] = useState({
         username:"",
@@ -49,7 +49,6 @@ const registerView = () =>{
 
         })
 
-
     }
     const handleChange = event =>{
         setState({
@@ -59,23 +58,24 @@ const registerView = () =>{
     }
 
     return(
-        <>
-            <form onSubmit={handleSubmit}>
-                <input type="text" name="username" onChange={handleChange} value={state.username}/>
-                <input type="password" name="password" onChange={handleChange} value={state.password}/>
-                <input type="password" name="reppassword"  onChange={handleChange} value={state.reppassword}/>
-                <button>Zarejestuj</button>
-                {
-                    alert != ""?
-                    <div class="alert">
-                        {alert}
-                    </div>
-                    :
-                    null
-                }
-            </form>
-        </>
+        <h2>wszystko tutaj dziala</h2>
+        // <>
+        //     <form onSubmit={handleSubmit}>
+        //         <input type="text" name="username" onChange={handleChange} value={state.username}/>
+        //         <input type="password" name="password" onChange={handleChange} value={state.password}/>
+        //         <input type="password" name="reppassword"  onChange={handleChange} value={state.reppassword}/>
+        //         <button>Zarejestuj</button>
+        //         {
+        //             alert != ""?
+        //             <div class="alert">
+        //                 {alert}
+        //             </div>
+        //             :
+        //             null
+        //         }
+        //     </form>
+        // </>
     )
 }
 
-export default registerView
+export default RegisterView

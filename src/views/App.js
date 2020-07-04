@@ -5,6 +5,7 @@ import LearnView from '../views/learn_page/index'
 import OptionView from '../views/option_page/index'
 import HomeView from '../views/home_page/index'
 import ProfileView from '../views/profile_page/index'
+import RegisterView from '../views/register_page/index'
 import "./App.css"
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
                 <Route path='/option'component={OptionView} />
                 <Route path='/home'component={HomeView} />
                 <Route path='/profile'component={ProfileView} />
+                <Route path='/register'component={RegisterView} />
             </Switch>
         </BrowserRouter>
     )
