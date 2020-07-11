@@ -15,9 +15,9 @@ const App = () => {
                 <Route exact path='/' component={Root} />
                 <Route path='/learn'component={LearnView} />
                 <Route path='/option'component={OptionView} />
-                <Route path='/home'component={HomeView} />
                 <Route path='/profile'component={ProfileView} />
                 <Route path='/register'component={RegisterView} />
+                <Route component={()=><h1>Strona 404</h1>} /> // Zrobić osobny komponent
             </Switch>
         </BrowserRouter>
     )

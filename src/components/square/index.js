@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const Base = styled.div`
 /* margin-top:30vh; */
+box-sizing: border-box;
 min-width:6vw;
 max-width:7vw;
 padding:0;
@@ -19,10 +20,10 @@ margin-left:2.5vw;
 /* margin-bottom: ${props => props.last ? '-20px' : '10px'}; */
 `
 
-const Square = ({last, children}) => (
+const Square_Component = ({last, children}) => (
     <Base last={last}>
         {children}
     </Base>
 ) 
 
-export default Square
+export default Square_Component

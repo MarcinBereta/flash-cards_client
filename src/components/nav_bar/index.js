@@ -62,7 +62,7 @@ const NavBar = () => (
           </Square>
         </NavLink>
 
-        <NavLink to='/home'>
+        <NavLink to='/'>
           <Square last>
             <HomeIcon />
           </Square>
