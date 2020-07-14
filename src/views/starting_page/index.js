@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
 import Button from '../../components/button/'
+import { NavLink } from 'react-router-dom'
 
 const StartingView = (props) =>{
     const[state, setState] = useState({
         registerView: false,
         loginView: false
     })
-    const changeUrlToLoginView = (event) =>{
+    const changeUrlToLoginView = event =>{
+        event.preventDefault();
         setState({
             ...state,
             registerView:true
@@ -14,12 +16,8 @@ const StartingView = (props) =>{
     }
     return(
         <>
-        <Button text={'login'} onClick={changeUrlToLoginView()} />
-        {
-            state.registerView = 'true' ? props.history.push('/register') : console.log('nie przelącza')
-        }
-        <Button text={'register'} ></Button>
-
+        <NavLink to='/login' ><Button text={'login'}/></NavLink>
+        <NavLink to='/register' ><Button text={'register'}/></NavLink>
         </>
     )
 }
