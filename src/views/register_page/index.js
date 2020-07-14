@@ -4,6 +4,7 @@ import Background from '../../components/background'
 import Form from '../../components/form/'
 import Input from '../../components/input/'
 import Button from '../../components/button/'
+import Spinner from 'react-bootstrap/Spinner'
 
 const Label = styled.label`
   display: inline-block;
@@ -40,7 +41,8 @@ const RegisterView = (props) =>{
     const[state, setState] = useState({
         username:"",
         password:"",
-        reppassword:""
+        reppassword:"",
+        spinner:false,
     })
 
     const [alert, setAlert] = useState("")
@@ -133,6 +135,11 @@ const RegisterView = (props) =>{
                     :
                     null
                 }
+                {
+                (state.spinner == true) 
+                && 
+                <Spinner animation="border" variant="primary" />
+            }
             </Form>
         </Background>
     )

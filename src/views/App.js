@@ -7,13 +7,15 @@ import HomeView from '../views/home_page/'
 import ProfileView from '../views/profile_page/'
 import RegisterView from '../views/register_page/'
 import LoginView from '../views/login_page/'
+import StartingView from '../views/starting_page/'
 import "./App.css"
 
 const App = () => {
     return (
         <BrowserRouter>
             <Switch>
-                <Route exact path='/' component={Root} />
+                <Route exact path='/' component={StartingView} />
+                <Route path='/home' component={Root} />
                 <Route path='/learn'component={LearnView} />
                 <Route path='/option'component={OptionView} />
                 <Route path='/profile'component={ProfileView} />

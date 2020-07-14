@@ -108,9 +108,6 @@ const LoginView = (props) =>{
             <InputGroup>
                 <Label>password</Label><Input type="password" name="password" onChange={handleChange} value={state.password} placeholder='password'/>
             </InputGroup>
-            <Spinner animation="border" role="status">
-  <span className="sr-only">Loading...</span>
-</Spinner>
             <Button text={'Login'} />
             {
                     alert !== ""?
@@ -121,7 +118,9 @@ const LoginView = (props) =>{
                     null
                 }
             {
-                (state.spinner == true) && <Spinner animation="border" />
+                (state.spinner == true) 
+                && 
+                <Spinner animation="border" variant="primary" />
             }
             </Form>
         </Background>
