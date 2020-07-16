@@ -39,9 +39,10 @@ width: 90%;
 const RegisterView = (props) =>{
 
     const[state, setState] = useState({
-        username:"",
-        password:"",
-        reppassword:"",
+        username:'',
+        email:'',
+        password:'',
+        reppassword:'',
         spinner:false,
     })
 
@@ -56,9 +57,10 @@ const RegisterView = (props) =>{
         event.preventDefault()
 
         if(
-            state.username.trim() === ""
-            || state.password.trim() === ""
-            || state.reppassword.trim() === ""
+            state.username.trim() === ''
+            || state.email.trim() === ''
+            || state.password.trim() === ''
+            || state.reppassword.trim() === ''
         ){
             setAlert("Please add all data!!!")
             return
@@ -76,7 +78,8 @@ const RegisterView = (props) =>{
             },
             body: JSON.stringify({
                 username: state.username.trim(),
-                password: state.password.trim()
+                password: state.password.trim(),
+                email: state.email.trim()
             })
         })
             .then(res =>{
@@ -118,6 +121,9 @@ const RegisterView = (props) =>{
             <Form onSubmit={handleSubmit}>
             <InputGroup>
                 <Label>name</Label><Input type="text" name="username" onChange={handleChange} value={state.username} placeholder='name'/>
+            </InputGroup>
+            <InputGroup>
+                <Label>email</Label><Input type="email" name="email" onChange={handleChange} value={state.email} placeholder='email'/>
             </InputGroup>
             <InputGroup>
                 <Label>password</Label><Input type="password" name="password" onChange={handleChange} value={state.password} placeholder='password'/>
