@@ -34,6 +34,7 @@ margin: 0 auto;
 margin-top: 3vh;
 width: 90%;
 `
+const InputCode = styled.input``
 
 
 const RegisterView = (props) =>{
@@ -94,7 +95,7 @@ const RegisterView = (props) =>{
                     setAlert(data.message)
                 }else{
                     setAlert("")
-                    props.history.push("/")
+                    props.history.push("/code")
                 }
             })
 

@@ -8,6 +8,8 @@ import ProfileView from '../views/profile_page/'
 import RegisterView from '../views/register_page/'
 import LoginView from '../views/login_page/'
 import StartingView from '../views/starting_page/'
+import CodeView from '../views/code_page/'
+import PageNotFoundView from '../views/404_page'
 import "./App.css"
 
 const App = () => {
@@ -21,7 +23,8 @@ const App = () => {
                 <Route path='/profile'component={ProfileView} />
                 <Route path='/register'component={RegisterView} />
                 <Route path='/login' component={LoginView} />
-                <Route component={()=><h1>Strona 404</h1>} /> // Zrobić osobny komponent
+                <Route path='/code' component={CodeView} />
+                <Route component={PageNotFoundView} />
             </Switch>
         </BrowserRouter>
     )
