@@ -109,29 +109,19 @@ const RegisterView = (props) =>{
 
     return(
         <Background width="100%">
-
-        {/* state.redirect == true ?
-            <Redirect
-            to={{
-                pathname: "/",
-                state: {name: "łukasz"}
-            }}
-            />
-            : null */}
-
             <Form onSubmit={handleSubmit}>
-            <InputGroup>
-                <Label>name</Label><Input type="text" name="username" onChange={handleChange} value={state.username} placeholder='name'/>
-            </InputGroup>
-            <InputGroup>
-                <Label>email</Label><Input type="email" name="email" onChange={handleChange} value={state.email} placeholder='email'/>
-            </InputGroup>
-            <InputGroup>
-                <Label>password</Label><Input type="password" name="password" onChange={handleChange} value={state.password} placeholder='password'/>
-            </InputGroup>
-            <InputGroup>
-                <Label>retype password</Label><Input type="password" name="reppassword"  onChange={handleChange} value={state.reppassword} placeholder='retype password'/>
-            </InputGroup>
+                <InputGroup>
+                    <Label>name</Label><Input type="text" name="username" onChange={handleChange} value={state.username} placeholder='name'/>
+                </InputGroup>
+                <InputGroup>
+                    <Label>email</Label><Input type="email" name="email" onChange={handleChange} value={state.email} placeholder='email'/>
+                </InputGroup>
+                <InputGroup>
+                    <Label>password</Label><Input type="password" name="password" onChange={handleChange} value={state.password} placeholder='password'/>
+                </InputGroup>
+                <InputGroup>
+                    <Label>retype password</Label><Input type="password" name="reppassword"  onChange={handleChange} value={state.reppassword} placeholder='retype password'/>
+                </InputGroup>
                 
                 <Button text={'Register'} />
                 {

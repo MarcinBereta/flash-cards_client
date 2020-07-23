@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Background from '../../components/background'
 import Form from '../../components/form/'
@@ -14,25 +14,25 @@ font-weight:bold;
 font-size:30px;
 `
 
-const CodeView = (props) =>{
+const CodeView = (props) => {
 
-    const[state, setState] = useState({
-        code:''
+    const [state, setState] = useState({
+        code: ''
     })
 
     const [alert, setAlert] = useState("")
 
-    const handleSubmit = event =>{
+    const handleSubmit = event => {
         event.preventDefault()
-        if(
+        if (
             state.code.trim() === ''
-        ){
+        ) {
             setAlert("Please add all data!!!")
             return
         }
 
-        fetch("http://127.0.0.1:3001/users/code",{
-            method:"POST",
+        fetch("http://127.0.0.1:3001/users/code", {
+            method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -40,42 +40,44 @@ const CodeView = (props) =>{
                 code: state.code.trim(),
             })
         })
-        .then(res =>{
-            if(res.ok){
-                return res.json()
-            }else{
-                setAlert("Błąd serwera!")
-            }
-        })
-        .then(data =>{
-            if(!data.succes){
-                setAlert(data.message)
-            }else{
-                setAlert("")
-                props.history.push("/")
-            }
-        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json()
+                }
+                else {
+                    setAlert("Błąd serwera!")
+                }
+            })
+            .then(data => {
+                console.log(data)
+                if (!data.succes) {
+                    setAlert(data.message)
+                } else {
+                    setAlert("")
+                    props.history.push("/")
+                }
+            })
     }
-    const handleChange = event =>{
+    const handleChange = event => {
         setState({
             ...state,
             [event.target.name]: event.target.value
         })
     }
-    return(
+    return (
         <Background width="100%">
             <Form onSubmit={handleSubmit}>
-            <Input type="text" name="code" onChange={handleChange} value={state.code} placeholder='code'/>
-            <Button text={'Send code'} />
+                <Input type="text" name="code" onChange={handleChange} value={state.code} placeholder='code' />
+                <Button text={'Send code'} />
             </Form>
             {
-                    alert !== ""?
+                alert !== "" ?
                     <AlertDiv>
                         {alert}
                     </AlertDiv>
                     :
                     null
-                }
+            }
         </Background>
     )
 }

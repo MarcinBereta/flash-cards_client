@@ -18,10 +18,10 @@ font-size:100%;
 }
 `
 
-const Button_Component = ({text}) => {
+let Button_component = ({text}) => {
     return(
         <Button>{text}</Button>
     )
 }
 
-export default Button_Component
+export default Button_component
