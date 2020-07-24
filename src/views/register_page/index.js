@@ -125,10 +125,8 @@ const RegisterView = (props) =>{
                 
                 <Button text={'Register'} />
                 {
-                    alert !== ""?
-                    <AlertDiv>
-                        {alert}
-                    </AlertDiv>
+                    alert !== "" ?
+                    <AlertDiv>{alert}</AlertDiv>
                     :
                     null
                 }
@@ -136,7 +134,7 @@ const RegisterView = (props) =>{
                 (state.spinner == true) 
                 && 
                 <Spinner animation="border" variant="primary" />
-            }
+                }
             </Form>
         </Background>
     )
