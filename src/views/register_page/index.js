@@ -5,6 +5,7 @@ import Form from '../../components/form/'
 import Input from '../../components/input/'
 import Button from '../../components/button/'
 import Spinner from 'react-bootstrap/Spinner'
+import {fetchAllUsers,registerUsers} from '../../utils/usersApi'
 
 const Label = styled.label`
   display: inline-block;
@@ -49,11 +50,6 @@ const RegisterView = (props) =>{
 
     const [alert, setAlert] = useState("")
 
-    // const redirect = path =>{
-    //     props.history.push(path)
-    // }
-
-
     const handleSubmit = event =>{
         event.preventDefault()
 
@@ -72,32 +68,9 @@ const RegisterView = (props) =>{
             return
         }
 
-        fetch("http://127.0.0.1:3001/users/register",{
-            method:"POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: state.username.trim(),
-                password: state.password.trim(),
-                email: state.email.trim()
-            })
-        })
-            .then(res =>{
-                if(res.ok){
-                    return res.json()
-                }else{
-                    setAlert("Błąd serwera!")
-                }
-            })
-            .then(data =>{
-                if(!data.succes){
-                    setAlert(data.message)
-                }else{
-                    setAlert("")
-                    props.history.push("/code")
-                }
-            })
+                //usersApi => odzielanie fetchy
+        registerUsers(setAlert,state,props)
+
 
     }
     const handleChange = event =>{
