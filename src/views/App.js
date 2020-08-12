@@ -9,9 +9,9 @@ import ProfileView from '../views/profile_page/'
 import RegisterView from '../views/register_page/'
 import LoginView from '../views/login_page/'
 import CodeView from '../views/code_page/'
-import CheckIsAdminView from '../views/checkIsAdmin_page'
 import AdminPanelView from '../views/adminPanel_page'
 import PageNotFoundView from '../views/404_page'
+import PrivateUserRoute from '../components/routes/privateRoute'
 
 import "./App.css"
 
@@ -27,8 +27,7 @@ const App = () => {
                 <Route path='/register'component={RegisterView} />
                 <Route path='/login' component={LoginView} />
                 <Route path='/code' component={CodeView} />
-                <Rote path='/checkIsAdmin' component={CheckIsAdminView} />
-                <Rote path='/adminPanel' component={AdminPanelView} />
+                <PrivateUserRoute path='/adminPanel' component={AdminPanelView} />
                 <Route component={PageNotFoundView} />
             </Switch>
         </BrowserRouter>
