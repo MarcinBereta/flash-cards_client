@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import UserApi from '../../utils/usersApi';
 import Background from '../../components/background';
 import Form from '../../components/form/';
 import Input from '../../components/input/';
 import Button from '../../components/button/';
 import Spinner from 'react-bootstrap/Spinner';
-import UserApi from '../../utils/usersApi';
 import AlertComponent from '../../components/alert/';
 
 const Label = styled.label`
@@ -16,14 +16,6 @@ const Label = styled.label`
   font-size: 30px;
   justify-content: center;
   margin-right: 2vw;
-`;
-const AlertDiv = styled.div`
-  width: 15vw;
-  height: 5vh;
-  color: red;
-  text-align: center;
-  font-weight: bold;
-  font-size: 30px;
 `;
 
 const InputGroup = styled.div`
@@ -67,8 +59,6 @@ const RegisterView = props => {
       return;
     }
 
-    // sposób 1
-    //usersApi => odzielanie fetchy
     const { username, password, email } = state;
     UserApi.registerUser(username, password, email)
       .then(data => {
@@ -76,7 +66,6 @@ const RegisterView = props => {
       })
       .catch(error => {
         //reject
-
       });
 
     // // spsoób 2
