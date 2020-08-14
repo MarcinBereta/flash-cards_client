@@ -1,23 +1,18 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import UserApi from '../../utils/usersApi';
+import Spinner from 'react-bootstrap/Spinner';
 import Background from '../../components/background'
 import Form from '../../components/form/'
 import Input from '../../components/input/'
 import Button from '../../components/button/'
+import AlertComponent from '../../components/alert/';
 
-const AlertDiv = styled.div`
-width:15vw;
-height:5vh;
-color:red;
-text-align:center;
-font-weight:bold;
-font-size:30px;
-`
 
 const CodeView = (props) => {
 
     const [state, setState] = useState({
-        code: ''
+        code: '',
+        spinner: false,
     })
 
     const [alert, setAlert] = useState("")
@@ -31,32 +26,19 @@ const CodeView = (props) => {
             return
         }
 
-        fetch("http://127.0.0.1:3001/users/code", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                code: state.code.trim(),
+        const { code } = state
+        UserApi.codeUser(code)
+        .then(data => {
+            setState({
+                ...state,
+                spinner: true,
             })
-        })
-            .then(res => {
-                if (res.ok) {
-                    return res.json()
-                }
-                else {
-                    setAlert("Błąd serwera!")
-                }
-            })
-            .then(data => {
-                console.log(data)
-                if (!data.succes) {
-                    setAlert(data.message)
-                } else {
-                    setAlert("")
-                    props.history.push("/")
-                }
-            })
+            setTimeout(() => {
+              props.history.push('/home');
+            }, 3000);
+          })
+          .catch(error => {
+          });
     }
     const handleChange = event => {
         setState({
@@ -69,15 +51,20 @@ const CodeView = (props) => {
             <Form onSubmit={handleSubmit}>
                 <Input type="text" name="code" onChange={handleChange} value={state.code} placeholder='code' />
                 <Button text={'Send code'} />
-            </Form>
+            
             {
                 alert !== "" ?
-                    <AlertDiv>
-                        {alert}
-                    </AlertDiv>
+                <AlertComponent
+                text={alert}
+                onClose={() => setAlert('')}
+              ></AlertComponent>
                     :
                     null
             }
+            {state.spinner == true && (
+                <Spinner animation="border" variant="primary" />
+              )}
+            </Form>
         </Background>
     )
 }

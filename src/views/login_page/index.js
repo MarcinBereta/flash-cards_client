@@ -47,14 +47,13 @@ const LoginView = props => {
 
     const { username, password } = state;
     UserApi.loginUser(username, password).then(data => {
-      console.log(data);
       if (data.succes) {
         setState({
           ...state,
           spinner: true,
         });
         setTimeout(() => {
-          props.history.push('/');
+          props.history.push('/home');
         }, 3000);
       } else {
         setAlert('Błąd serwera!');

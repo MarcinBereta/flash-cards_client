@@ -20,13 +20,13 @@ const App = () => {
         <BrowserRouter>
             <Switch>
                 <Route exact path='/' component={StartingView} />
-                <Route path='/home' component={Root} />
-                <Route path='/learn'component={LearnView} />
-                <Route path='/option'component={OptionView} />
-                <Route path='/profile'component={ProfileView} />
                 <Route path='/register'component={RegisterView} />
                 <Route path='/login' component={LoginView} />
-                <Route path='/code' component={CodeView} />
+                <PrivateUserRoute path='/home' component={Root} />
+                <PrivateUserRoute path='/learn'component={LearnView} />
+                <PrivateUserRoute path='/option'component={OptionView} />
+                <PrivateUserRoute path='/profile'component={ProfileView} />
+                <PrivateUserRoute path='/code' component={CodeView} />
                 <PrivateUserRoute path='/adminPanel' component={AdminPanelView} />
                 <Route component={PageNotFoundView} />
             </Switch>

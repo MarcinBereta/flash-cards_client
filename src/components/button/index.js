@@ -18,9 +18,9 @@ font-size:100%;
 }
 `
 
-let Button_component = ({text}) => {
+let Button_component = ({text,...props}) => {
     return(
-        <Button>{text}</Button>
+        <Button {...props}>{text}</Button>
     )
 }
 

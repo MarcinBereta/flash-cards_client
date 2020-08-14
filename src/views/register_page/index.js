@@ -28,7 +28,6 @@ const InputGroup = styled.div`
   margin-top: 3vh;
   width: 90%;
 `;
-const InputCode = styled.input``;
 
 const RegisterView = props => {
   const [state, setState] = useState({
@@ -62,19 +61,16 @@ const RegisterView = props => {
     const { username, password, email } = state;
     UserApi.registerUser(username, password, email)
       .then(data => {
-        //resolve(wylapuje od userApi)
+        setState({
+          ...state,
+          spinner: true,
+      })
+        setTimeout(() => {
+          props.history.push('/code');
+        }, 3000);
       })
       .catch(error => {
-        //reject
       });
-
-    // // spsoób 2
-    // try{
-    //     const data = await UserApi.registerUser(username, password, email)
-    // }
-    // catch(err){
-    //     setAlert("")
-    // }
   };
   const handleChange = event => {
     setState({
