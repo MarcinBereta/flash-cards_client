@@ -7,7 +7,7 @@ class PrivateUserRoute extends Component {
         return (
             <>
                 {
-                    this.props.logged ?
+                    this.props.logged && !this.props.isAdmin?
                         <Route {...this.props} />
                         :
                         <Redirect to="/"/>
@@ -18,7 +18,8 @@ class PrivateUserRoute extends Component {
 }
 
 const mapStateToProps = state =>({
-    logged: state.session.logged
+    logged: state.session.logged,
+    isAdmin: state.session.isAdmin,
 })
 
 export default connect(mapStateToProps)(PrivateUserRoute);

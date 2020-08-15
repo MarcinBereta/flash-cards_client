@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { BrowserRouter,Switch, Route } from 'react-router-dom'
 
 import StartingView from '../views/starting_page/'
@@ -12,10 +12,24 @@ import CodeView from '../views/code_page/'
 import AdminPanelView from '../views/adminPanel_page'
 import PageNotFoundView from '../views/404_page'
 import PrivateUserRoute from '../components/routes/privateRoute'
+import Auth from '../utils/auth'
 
 import "./App.css"
 
 const App = () => {
+
+    useEffect(()=>{
+        console.log(Auth.isTokenActive())
+        if(Auth.isTokenActive()){
+            // ustawiamy w redux że uzytkownik jest zalogowany
+
+            // Wykonać zapytanie do serwera, które pobierze informacje o użytkonwiku 
+            // - obiekt uzytkownika z bazy
+            // - informację czy użytkownik jest administratorem
+            // Ustawiamy dane w redux
+        }
+    },[])
+
     return (
         <BrowserRouter>
             <Switch>
@@ -26,7 +40,7 @@ const App = () => {
                 <PrivateUserRoute path='/learn'component={LearnView} />
                 <PrivateUserRoute path='/option'component={OptionView} />
                 <PrivateUserRoute path='/profile'component={ProfileView} />
-                <PrivateUserRoute path='/code' component={CodeView} />
+                <Route path='/code' component={CodeView} />
                 <PrivateUserRoute path='/adminPanel' component={AdminPanelView} />
                 <Route component={PageNotFoundView} />
             </Switch>

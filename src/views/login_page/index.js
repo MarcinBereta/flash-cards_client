@@ -7,6 +7,10 @@ import Input from '../../components/input/';
 import Button from '../../components/button/';
 import Spinner from 'react-bootstrap/Spinner';
 import AlertComponent from '../../components/alert/';
+import Auth from '../../utils/auth'
+import {connect} from 'react-redux'
+import {useDispatch} from 'react-redux'
+import {setUserLogged, setUserData, setUserIsAdmin} from '../../redux/actions/session'
 
 const Label = styled.label`
   display: inline-block;
@@ -36,6 +40,7 @@ const LoginView = props => {
   });
 
   const [alert, setAlert] = useState('');
+  const dispatch = useDispatch()
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -46,13 +51,23 @@ const LoginView = props => {
     }
 
     const { username, password } = state;
-    UserApi.loginUser(username, password).then(data => {
+    UserApi
+      .loginUser(username, password)
+      .then(data => {
       if (data.succes) {
         setState({
           ...state,
           spinner: true,
         });
+
+        const {token, user} = data
+        console.log(data)
+        
         setTimeout(() => {
+          Auth.setToken(token)
+          dispatch(setUserData(user))
+          dispatch(setUserIsAdmin(user.isAdmin))
+          dispatch(setUserLogged())
           props.history.push('/home');
         }, 3000);
       } else {
@@ -104,4 +119,10 @@ const LoginView = props => {
   );
 };
 
-export default LoginView;
+const mapDispatchToProps = dispatch =>({
+  setUser: user => {dispatch(setUserData(user))},
+  setUserIsAdmin: () => {dispatch(setUserIsAdmin())},
+  setUserLogged: () => {dispatch(setUserLogged())}
+})
+
+export default connect(()=>({}), mapDispatchToProps)(LoginView);

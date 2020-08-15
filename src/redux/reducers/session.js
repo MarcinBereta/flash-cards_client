@@ -1,7 +1,8 @@
-import {SET_USER_DATA, SET_USER_LOGGED} from '../types/session'
+import {SET_USER_DATA, SET_USER_LOGGED, SET_USER_ADMIN} from '../types/session'
 
 const initialState = {
     logged: false,
+    isAdmin: false,
     user: {}
 }
 
@@ -14,6 +15,10 @@ export default (state = initialState, action) =>{
         case SET_USER_LOGGED:
             return{
                 ...state, logged: true
+            }
+        case SET_USER_ADMIN:
+            return{
+                ...state, isAdmin: action.isAdmin
             }
         default:
             return state

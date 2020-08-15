@@ -18,10 +18,8 @@ font-size:100%;
 }
 `
 
-let Button_component = ({text,...props}) => {
+export default ({text,...props}) => {
     return(
         <Button {...props}>{text}</Button>
     )
 }
-
-export default Button_component
