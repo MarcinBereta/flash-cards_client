@@ -46,7 +46,7 @@ const LoginView = props => {
     event.preventDefault();
 
     if (state.username.trim() === '' || state.password.trim() === '') {
-      setAlert('Please add all data!!!');
+      setAlert('Proszę wypełnić wszystkie pola!!!');
       return;
     }
 
@@ -64,14 +64,22 @@ const LoginView = props => {
         console.log(data)
         
         setTimeout(() => {
-          Auth.setToken(token)
+         if(Auth.isTokenActive()){
+           console.log('token juz jest')
+          props.history.push('/home');
+          return
+         }else{
+           console.log('tworzenie tokena')
+           Auth.setToken(token)
           dispatch(setUserData(user))
           dispatch(setUserIsAdmin(user.isAdmin))
           dispatch(setUserLogged())
           props.history.push('/home');
+         }
+          
         }, 3000);
       } else {
-        setAlert('Błąd serwera!');
+        setAlert(data.message);
       }
     });
   };

@@ -15,9 +15,9 @@ export default class Auth{
     }
 
     static isTokenActive(){
-        // zwracać infomracjeczy token jest dalej aktywny - czy nie wygasł
-        const token = this.getToken()
-        const decoded = decode(token)
+        let token = this.getToken()
+        let decoded = ''
+        if(token) decoded = decode(token)
         if(decoded.exp > (Date.now() / 1000))
             return true
         else

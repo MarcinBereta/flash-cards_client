@@ -49,7 +49,7 @@ const RegisterView = props => {
       state.password.trim() === '' ||
       state.reppassword.trim() === ''
     ) {
-    setAlert('Please add all data!!!');
+    setAlert('Proszę wypełnić wszystkie pola!!!');
       return;
     }
 
