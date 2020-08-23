@@ -65,11 +65,9 @@ const LoginView = props => {
         
         setTimeout(() => {
          if(Auth.isTokenActive()){
-           console.log('token juz jest')
           props.history.push('/home');
           return
          }else{
-           console.log('tworzenie tokena')
            Auth.setToken(token)
           dispatch(setUserData(user))
           dispatch(setUserIsAdmin(user.isAdmin))

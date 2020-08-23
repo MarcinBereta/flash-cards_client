@@ -11,6 +11,7 @@ import LoginView from '../views/login_page/'
 import CodeView from '../views/code_page/'
 import AdminPanelView from '../views/adminPanel_page'
 import PageNotFoundView from '../views/404_page'
+import AdminRoute from '../components/routes/adminRoute'
 import PrivateUserRoute from '../components/routes/privateRoute'
 import Auth from '../utils/auth'
 
@@ -41,7 +42,7 @@ const App = () => {
                 <PrivateUserRoute path='/option'component={OptionView} />
                 <PrivateUserRoute path='/profile'component={ProfileView} />
                 <Route path='/code' component={CodeView} />
-                <PrivateUserRoute path='/adminPanel' component={AdminPanelView} />
+                <AdminRoute path='/adminPanel' component={AdminPanelView} />
                 <Route component={PageNotFoundView} />
             </Switch>
         </BrowserRouter>
