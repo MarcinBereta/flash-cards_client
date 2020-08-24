@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import { BrowserRouter,Switch, Route } from 'react-router-dom'
+import UserApi from '../utils/usersApi';
 
 import StartingView from '../views/starting_page/'
 import Root from './Root/'
@@ -14,20 +15,30 @@ import PageNotFoundView from '../views/404_page'
 import AdminRoute from '../components/routes/adminRoute'
 import PrivateUserRoute from '../components/routes/privateRoute'
 import Auth from '../utils/auth'
+import {connect} from 'react-redux'
+import {useDispatch} from 'react-redux'
+import {setUserLogged,setUserIsAdmin} from '../redux/actions/session'
 
 import "./App.css"
 
 const App = () => {
-
+    const dispatch = useDispatch()
     useEffect(()=>{
         console.log(Auth.isTokenActive())
         if(Auth.isTokenActive()){
-            // ustawiamy w redux że uzytkownik jest zalogowany
-
-            // Wykonać zapytanie do serwera, które pobierze informacje o użytkonwiku 
-            // - obiekt uzytkownika z bazy
-            // - informację czy użytkownik jest administratorem
-            // Ustawiamy dane w redux
+            
+            dispatch(setUserLogged())
+            let userId = Auth.getUserId()
+            
+            UserApi
+                .fetchOneUser(userId)
+                .then(data =>{
+                    if (data.succes){
+                        console.log(data)
+                        let userInfo = data.user
+                        dispatch(setUserIsAdmin(userInfo.isAdmin))
+                    } else console.log('nie znaleziono uzytkownika')
+                })
         }
     },[])
 
@@ -49,4 +60,8 @@ const App = () => {
     )
 }
 
-export default App;
+const mapDispatchToProps = dispatch =>({
+    setUserLogged: () => {dispatch(setUserLogged())}
+})
+
+export default connect(()=>({}), mapDispatchToProps)(App);
