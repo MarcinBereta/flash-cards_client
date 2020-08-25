@@ -1,8 +1,15 @@
+import Auth from './auth'
+
+const token = Auth.getToken()
+
 export default class UsersApi{
   static fetchAllUsers() {
     return new Promise((resolve, reject) => {
       fetch('http://127.0.0.1:3001/users/all', {
         method: 'GET',
+        headers:{
+          "authorization":"Bearer " + token
+        }
       })
         .then(res => {
           if (res.ok) {
@@ -21,14 +28,11 @@ export default class UsersApi{
   }
   static fetchOneUser(userId) {
     return new Promise((resolve, reject) => {
-      fetch('http://127.0.0.1:3001/users/one', {
-        method:"POST",
+      fetch(`http://127.0.0.1:3001/users/one/${userId}`, {
+        method:"GET",
         headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            userId: userId,
-        })
+          "authorization":"Bearer " + token
+        }
       })
         .then(res => {
           if (res.ok) {

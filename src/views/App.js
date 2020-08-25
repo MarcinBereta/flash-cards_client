@@ -12,12 +12,12 @@ import LoginView from '../views/login_page/'
 import CodeView from '../views/code_page/'
 import AdminPanelView from '../views/adminPanel_page'
 import PageNotFoundView from '../views/404_page'
-import AdminRoute from '../components/routes/adminRoute'
-import PrivateUserRoute from '../components/routes/privateRoute'
+import PrivateAdminRoute from '../components/routes/privateAdminRoute'
+import PrivateUserRoute from '../components/routes/privateUserRoute'
 import Auth from '../utils/auth'
 import {connect} from 'react-redux'
 import {useDispatch} from 'react-redux'
-import {setUserLogged,setUserIsAdmin} from '../redux/actions/session'
+import {setUserLogged,setUserIsAdmin, setUserData} from '../redux/actions/session'
 
 import "./App.css"
 
@@ -25,18 +25,24 @@ const App = () => {
     const dispatch = useDispatch()
     useEffect(()=>{
         console.log(Auth.isTokenActive())
+
+        UserApi
+            .fetchAllUsers()
+                .then(res => {
+                    console.log(res)
+                })
+
         if(Auth.isTokenActive()){
             
             dispatch(setUserLogged())
             let userId = Auth.getUserId()
-            
             UserApi
                 .fetchOneUser(userId)
                 .then(data =>{
                     if (data.succes){
                         console.log(data)
-                        let userInfo = data.user
-                        dispatch(setUserIsAdmin(userInfo.isAdmin))
+                        dispatch(setUserIsAdmin(data.user.isAdmin))
+                        dispatch(setUserData(data.user))
                     } else console.log('nie znaleziono uzytkownika')
                 })
         }
@@ -45,6 +51,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <Switch>
+                {/* <PublicRoute blockedLogged={true} */}
                 <Route exact path='/' component={StartingView} />
                 <Route path='/register'component={RegisterView} />
                 <Route path='/login' component={LoginView} />
@@ -52,8 +59,8 @@ const App = () => {
                 <PrivateUserRoute path='/learn'component={LearnView} />
                 <PrivateUserRoute path='/option'component={OptionView} />
                 <PrivateUserRoute path='/profile'component={ProfileView} />
+                <PrivateAdminRoute path='/adminPanel' component={AdminPanelView} />
                 <Route path='/code' component={CodeView} />
-                <AdminRoute path='/adminPanel' component={AdminPanelView} />
                 <Route component={PageNotFoundView} />
             </Switch>
         </BrowserRouter>

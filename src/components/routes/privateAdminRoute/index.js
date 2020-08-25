@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import {Route, Redirect} from 'react-router-dom'
 import {connect} from "react-redux"
 
-class AdminRoute extends Component {
+class PrivateAdminRoute extends Component {
     render() {
         return (
             <>
                 {
-                    this.props.isAdmin?
+                    this.props.isAdmin && this.props.logged ?
                         <Route {...this.props} />
                         :
                         <Redirect to="/"/>
@@ -20,6 +20,7 @@ class AdminRoute extends Component {
 
 const mapStateToProps = state =>({
     isAdmin: state.session.isAdmin,
+    logged: state.session.logged,
 })
 
-export default connect(mapStateToProps)(AdminRoute);
+export default connect(mapStateToProps)(PrivateAdminRoute);
